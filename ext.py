@@ -34,7 +34,7 @@ print("...bb end...")
 """
 
 btnd [detached from 291653.pts-2.server2]
-biten [detached from 291996.pts-0.server2]
+biten [detached from 299445.pts-2.server2]
 
 print(config["coinName"])
 print(config["symbol"])

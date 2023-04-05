@@ -8,7 +8,7 @@
     "decimal": 18,
     "networkid": 166,
     "baseBlockReward": 2,
-    "http_provider": "http://155.133.23.127:8085",
+    "http_provider": "https://rpc.coinbiten.com",
     "ws_provider": "ws://155.133.23.127:9091",
     "dbname": "bitenpy",
     "livecoinwatchapi": "https://api.livecoinwatch.com/coins/single",
