@@ -32,8 +32,15 @@ print("BK OBJ")
 print(bk)
 print("...bb end...")
 """
+Then type screen Press enter
+Run your command
+Press ctrl + A and D
+It will run forever in background
 
-btnd [detached from 291653.pts-2.server2]
+screen -ls
+screen -X -S 500938 quit
+
+btnd [detached from 322616.pts-2.server2]
 biten [detached from 299445.pts-2.server2]
 
 print(config["coinName"])
