@@ -83,7 +83,7 @@ def backgroungdblock():
 
 def latest():
         try:
-                bb = w3.eth.get_block('latest')
+                bb = w3.eth.get_block('latest', True)
                 trxlist = []
                 block = {
                     "difficulty": bb["difficulty"], "extraData": bb["extraData"].hex(), "gasLimit": bb["gasLimit"],
@@ -108,7 +108,7 @@ def latest():
                     ), "number": bb["number"], "timestamp": datetime.fromtimestamp(bb["timestamp"]).strftime("%Y-%m-%d")}
                     trxfind = transactioncol.find_one({"hash": i["hash"].hex()})
                     if trxfind == None:
-                        #print(mytrxobj)
+                        print(mytrxobj)
                         transactioncol.insert_one(mytrxobj)
                     else:
                         print("Latest Transaction Exit ")
@@ -120,7 +120,7 @@ def latest():
                 else:
                     print("Latest Block Exit "+str(bb["number"]))
                     print("......")
-                   
+                  
         except KeyboardInterrupt:
             print("Shutdown...")
         except BaseException as e:
