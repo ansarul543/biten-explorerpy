@@ -41,7 +41,7 @@ screen -ls
 screen -X -S 500938 quit
 
 btnd [detached from 322616.pts-2.server2]
-biten [detached from 343433.pts-0.server2]
+biten [detached from 426626.pts-2.server2]
 
 print(config["coinName"])
 print(config["symbol"])
