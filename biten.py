@@ -132,6 +132,7 @@ def block(blocks):
         try:
             bb = w3.eth.get_block(blocks, True)
             trxlist = []
+            uncles=[]
             blockd =[{
                 "difficulty": bb["difficulty"], "extraData": bb["extraData"].hex(), "gasLimit": bb["gasLimit"],
                 "gasUsed": bb["gasUsed"], "hash": bb["hash"].hex(), "logsBloom": bb["logsBloom"].hex(),
@@ -139,8 +140,10 @@ def block(blocks):
                 "parentHash": bb["parentHash"].hex(), "receiptsRoot": bb["receiptsRoot"].hex(),
                 "sha3Uncles": bb["sha3Uncles"].hex(), "size": bb["size"], "stateRoot": bb["stateRoot"].hex(),
                 "timestamp": bb["timestamp"], "totalDifficulty": bb["totalDifficulty"], "transactions": trxlist,
-                "transactionsRoot": bb["transactionsRoot"].hex(), "uncles": bb["uncles"]
+                "transactionsRoot": bb["transactionsRoot"].hex(), "uncles": uncles
             }]
+            for u in bb["uncles"]:
+                uncles.append(u.hex())
             for i in bb['transactions']:
                 td = {"blockHash": i["blockHash"].hex(), "blockNumber": i["blockNumber"], "from": i["from"].lower(),
                     "gas": i["gas"], "gasPrice": i["gasPrice"],"timeStamp":bb["timestamp"],"hash": i["hash"].hex(), 
@@ -175,15 +178,37 @@ def allblocks():
             sorts=-1
         else:
             sorts=1      
-    try:       
+           
+    try:
         val = blockcol.find().sort([('number', sorts)]).skip(page).limit(limits) 
         for i in val:
-            data.append(i["block"])  
-        return jsonify(data)
+            bb = i["block"]
+            #print(i["block"]["totalDifficulty"])
+            uncles=[]
+            blockd ={
+                "difficulty": bb["difficulty"], "extraData": bb["extraData"], "gasLimit": bb["gasLimit"],
+                "gasUsed": bb["gasUsed"], "hash": bb["hash"], "logsBloom": bb["logsBloom"],
+                "miner": bb["miner"], "mixHash": bb["mixHash"], "nonce": bb["nonce"], "number": bb["number"],
+                "parentHash": bb["parentHash"], "receiptsRoot": bb["receiptsRoot"],
+                "sha3Uncles": bb["sha3Uncles"], "size": bb["size"], "stateRoot": bb["stateRoot"],
+                "timestamp": bb["timestamp"], "totalDifficulty": bb["totalDifficulty"], "transactions": bb["transactions"],
+                "transactionsRoot": bb["transactionsRoot"], "uncles": uncles
+            }
+            for u in bb["uncles"]:
+                uncles.append(u.hex())
+            data.append(blockd)  
+            #print(i)
+            print("")
+        print(data)    
+        print("")
+        print("")
+        return jsonify(data)   
     except BaseException as e:
         print("Connection Error") 
         print(str(e))
-        return jsonify([])        
+        return jsonify([])
+           
+ 
         
 
 @app.route('/api/trxs', methods=["POST", "GET"])
@@ -219,6 +244,7 @@ def blocklatest():
         try:
             bb = w3.eth.get_block("latest", True)
             trxlist = []
+            uncles=[]
             blockd =[{
                 "difficulty": bb["difficulty"], "extraData": bb["extraData"].hex(), "gasLimit": bb["gasLimit"],
                 "gasUsed": bb["gasUsed"], "hash": bb["hash"].hex(), "logsBloom": bb["logsBloom"].hex(),
@@ -226,8 +252,10 @@ def blocklatest():
                 "parentHash": bb["parentHash"].hex(), "receiptsRoot": bb["receiptsRoot"].hex(),
                 "sha3Uncles": bb["sha3Uncles"].hex(), "size": bb["size"], "stateRoot": bb["stateRoot"].hex(),
                 "timestamp": bb["timestamp"], "totalDifficulty": bb["totalDifficulty"], "transactions": trxlist,
-                "transactionsRoot": bb["transactionsRoot"].hex(), "uncles": bb["uncles"]
+                "transactionsRoot": bb["transactionsRoot"].hex(), "uncles": uncles
             }]
+            for u in bb["uncles"]:
+                uncles.append(u.hex())
             for i in bb['transactions']:
                 td = {"blockHash": i["blockHash"].hex(), "blockNumber": i["blockNumber"], "from": i["from"].lower(),
                     "gas": i["gas"], "gasPrice": i["gasPrice"],"timeStamp":bb["timestamp"],"hash": i["hash"].hex(), 
@@ -242,6 +270,7 @@ def blocklatest():
             print("Connection Error") 
             print(str(e))
             return jsonify([])
+
 
 @app.route('/api/block-count', methods=["POST", "GET"])
 def blockcount():

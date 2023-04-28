@@ -38,10 +38,10 @@ Press ctrl + A and D
 It will run forever in background
 
 screen -ls
-screen -X -S 475606 quit
+screen -X -S 485138 quit
 
 btnd [detached from 322616.pts-2.server2]
-biten [detached from 485138.pts-0.server2]
+biten [detached from 505636.pts-2.server2]
 
 print(config["coinName"])
 print(config["symbol"])
