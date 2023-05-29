@@ -43,6 +43,11 @@ screen -X -S 485138 quit
 btnd [detached from 322616.pts-2.server2]
 biten [detached from 505636.pts-2.server2]
 
+//New Server
+btnd  [detached from 9103.pts-1.server]
+biten [detached from 9231.pts-1.server]
+//End New Server
+
 print(config["coinName"])
 print(config["symbol"])
 
