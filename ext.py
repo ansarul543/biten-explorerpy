@@ -38,13 +38,13 @@ Press ctrl + A and D
 It will run forever in background
 
 screen -ls
-screen -X -S 485138 quit
+screen -X -S 9103 quit
 
-btnd [detached from 322616.pts-2.server2]
+btnd [detached from 18788.pts-1.server]
 biten [detached from 505636.pts-2.server2]
 
 //New Server
-btnd  [detached from 9103.pts-1.server]
+btnd  [detached from .pts-1.server]
 biten [detached from 9231.pts-1.server]
 //End New Server
 
