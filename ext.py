@@ -40,12 +40,12 @@ It will run forever in background
 screen -ls
 screen -X -S 9231 quit
 
-btnd [detached from 18788.pts-1.server]
-biten [detached from 505636.pts-2.server2]
+
 
 //New Server
-btnd  [detached from 18788.pts-1.server]
-biten [detached from 28978.pts-1.server]
+btnd :  
+biten Explorer :  [detached from 3190.pts-0.server]
+
 //End New Server
 
 print(config["coinName"])
